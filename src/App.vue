@@ -1,6 +1,8 @@
 <template>
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+    <div id="main">
+        <img alt="Vue logo" src="./assets/logo.png" />
+        <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+    </div>
 </template>
 
 <script lang="ts">
@@ -12,16 +14,19 @@ import HelloWorld from './components/HelloWorld.vue'
         HelloWorld,
     },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+    mounted() {}
+}
 </script>
 
 <style>
 #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
+    position: relative;
+    overflow: hidden;
+}
+#main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 </style>
