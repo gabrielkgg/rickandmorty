@@ -1,0 +1,7 @@
+$color-gray: #9f9f9f;
+$color-white: #fff;
+
+:root {
+    --color-white: #{$color-white};
+    --color-gray: #{$color-gray};
+}
