@@ -1,7 +1,11 @@
 $color-gray: #9f9f9f;
+$color-gray-2: #606060;
 $color-white: #fff;
+$color-yellow: #cbd736;
 
 :root {
     --color-white: #{$color-white};
     --color-gray: #{$color-gray};
+    --color-gray-2: #{$color-gray-2};
+    --color-yellow: #{$color-yellow};
 }
