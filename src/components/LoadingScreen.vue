@@ -1,5 +1,5 @@
 <template>
-    <div class="overlay">
+    <div v-if="loading" class="overlay">
         <img src="../assets/img/loading.png" alt="Loading" class="loading-image" />
         <img src="../assets/img/portalloader.png" alt="Portal" class="loading-portal" />
         <div class="loading-text">Loading</div>
@@ -8,9 +8,12 @@
 
 <script lang="ts">
 import { Vue, Options } from 'vue-class-component'
+import { Prop } from '../decorators/prop.decorator'
 
 @Options({})
-export default class LoadingScreen extends Vue {}
+export default class LoadingScreen extends Vue {
+    @Prop() loading = false
+}
 </script>
 
 <style lang="scss">
@@ -21,7 +24,7 @@ export default class LoadingScreen extends Vue {}
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -30,7 +33,7 @@ export default class LoadingScreen extends Vue {}
     backdrop-filter: blur(6px);
 
     .loading-image {
-        border: 2px solid #606060;
+        border: 2px solid $color-gray-2;
         border-radius: $border-radius;
     }
 

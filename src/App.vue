@@ -1,7 +1,8 @@
 <template>
     <div id="main">
-        <Search />
-        <LoadingScreen />
+        <Search @search="searchCharacter" />
+        <CharacterList :list="results" />
+        <LoadingScreen :loading="loading" />
     </div>
 </template>
 
@@ -9,30 +10,41 @@
 import { Vue, Options } from 'vue-class-component'
 import Search from './components/Search.vue'
 import LoadingScreen from './components/LoadingScreen.vue'
+import CharacterList from './components/CharacterList.vue'
 import gql from 'graphql-tag'
 import { apiQuery } from './services/api.service'
+import { ApiPayloadDto } from './dto/apiPayload.dto'
 
 @Options({
     components: {
         Search,
         LoadingScreen,
+        CharacterList,
     },
 })
 export default class App extends Vue {
+    public payload = new ApiPayloadDto()
     public results = null
-    async beforeMount() {
+    public loading = false
+
+    public async searchCharacter(characterName: string) {
+        this.loading = true
         const query = gql`
             query Characters {
-                characters {
+                characters(filter: { name: "${characterName}" }) {
                     results {
                         id
                         name
+                        species
                         image
                     }
                 }
             }
         `
-        this.results = await apiQuery(query)
+
+        this.payload = await apiQuery(query)
+        this.loading = this.payload?.loading
+        this.results = this.payload.data.characters.results
     }
 }
 </script>
@@ -43,11 +55,13 @@ export default class App extends Vue {
 #app {
     position: relative;
     overflow: hidden;
-    background: url(assets/img/background.png) no-repeat;
+    background: #040404 url(assets/img/background.png) no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
     background-size: cover;
 }
 #main {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
