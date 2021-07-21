@@ -7,7 +7,7 @@ export const api = new ApolloClient({
 })
 
 export async function apiQuery(query: DocumentNode): Promise<ApiPayloadDto> {
-    return await api.query({ query })
+    return await api.query({ query, errorPolicy: 'all' })
 }
 
 //api.query({ query }).then((result) => console.log(result))
