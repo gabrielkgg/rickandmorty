@@ -2,6 +2,7 @@
     <div id="main">
         <Search @search="searchCharacter" />
         <CharacterList :list="results" @setLoading="setLoading" @unsetLoading="unsetLoading" />
+        <NoResult v-if="noResult" />
         <LoadingScreen :loading="loading" />
     </div>
 </template>
@@ -11,6 +12,7 @@ import { Vue, Options } from 'vue-class-component'
 import Search from './components/Search.vue'
 import LoadingScreen from './components/LoadingScreen.vue'
 import CharacterList from './components/CharacterList.vue'
+import NoResult from './components/NoResult.vue'
 import gql from 'graphql-tag'
 import { apiQuery } from './services/api.service'
 import { ApiPayloadDto } from './dto/apiPayload.dto'
@@ -20,12 +22,14 @@ import { ApiPayloadDto } from './dto/apiPayload.dto'
         Search,
         LoadingScreen,
         CharacterList,
+        NoResult,
     },
 })
 export default class App extends Vue {
     public payload: ApiPayloadDto
     public results: any = null
     public loading = false
+    public noResult: boolean
 
     public async searchCharacter(characterName: string) {
         this.loading = true
@@ -45,7 +49,14 @@ export default class App extends Vue {
 
         this.payload = await apiQuery(query)
         this.loading = this.payload?.loading
-        this.results = this.payload.data.characters.results
+
+        if (this.payload.data.characters) {
+            this.results = this.payload.data.characters.results
+            this.noResult = false
+        } else {
+            this.results = null
+            this.noResult = true
+        }
     }
 
     setLoading() {
