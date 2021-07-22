@@ -26,7 +26,7 @@ import CharacterDetail from './CharacterDetail.vue'
 })
 export default class CharacterList extends Vue {
     @Prop() list: CharacterDto[]
-    public selectedCharacterId: number | null = null
+    public selectedCharacterId: number = null
 
     public setCharacterDetail(characterId: number) {
         this.selectedCharacterId = characterId

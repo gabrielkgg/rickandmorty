@@ -1,6 +1,6 @@
 <template>
     <div class="character-card">
-        <img class="character-card-image" :src="character.image" />
+        <img class="character-card-image" :src="character.image" :class="character.status" />
         <div class="character-card-tag">
             <div class="character-card-name">{{ character.name }}</div>
             <div class="character-card-species">{{ character.species }}</div>
@@ -19,7 +19,7 @@ export default class CharacterCard extends Vue {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../sass/_all.scss';
 
 .character-card {
@@ -32,8 +32,10 @@ export default class CharacterCard extends Vue {
     transition: 1s;
 
     &-image {
-        -webkit-filter: grayscale(100%);
-        filter: grayscale(100%);
+        &.Dead {
+            -webkit-filter: grayscale(100%);
+            filter: grayscale(100%);
+        }
     }
 
     &-tag {
@@ -58,11 +60,6 @@ export default class CharacterCard extends Vue {
     &:hover {
         border-color: var(--color-yellow);
         box-shadow: 0 2px 20px var(--color-yellow);
-
-        .character-card-image {
-            -webkit-filter: grayscale(0%);
-            filter: grayscale(0%);
-        }
     }
 }
 </style>

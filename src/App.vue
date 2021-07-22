@@ -36,6 +36,7 @@ export default class App extends Vue {
                         id
                         name
                         species
+                        status
                         image
                     }
                 }
