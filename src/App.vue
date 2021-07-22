@@ -23,8 +23,8 @@ import { ApiPayloadDto } from './dto/apiPayload.dto'
     },
 })
 export default class App extends Vue {
-    public payload = new ApiPayloadDto()
-    public results = null
+    public payload: ApiPayloadDto
+    public results: any = null
     public loading = false
 
     public async searchCharacter(characterName: string) {
@@ -36,6 +36,7 @@ export default class App extends Vue {
                         id
                         name
                         species
+                        status
                         image
                     }
                 }
