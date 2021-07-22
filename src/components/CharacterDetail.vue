@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-overlay"></div>
+    <div class="modal-overlay" @click="unsetCharacter"></div>
 
     <div class="close-mobile" v-if="character">
         <span @click="unsetCharacter"></span>
