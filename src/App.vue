@@ -1,7 +1,7 @@
 <template>
     <div id="main">
         <Search @search="searchCharacter" />
-        <CharacterList :list="results" />
+        <CharacterList :list="results" @setLoading="setLoading" @unsetLoading="unsetLoading" />
         <LoadingScreen :loading="loading" />
     </div>
 </template>
@@ -46,6 +46,14 @@ export default class App extends Vue {
         this.payload = await apiQuery(query)
         this.loading = this.payload?.loading
         this.results = this.payload.data.characters.results
+    }
+
+    setLoading() {
+        this.loading = true
+    }
+
+    unsetLoading() {
+        this.loading = false
     }
 }
 </script>

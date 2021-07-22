@@ -1,10 +1,15 @@
 <template>
     <div class="modal-overlay"></div>
 
+    <div class="close-mobile" v-if="character">
+        <span @click="unsetCharacter"></span>
+    </div>
+
     <div class="modal flex column" v-if="character">
         <div class="close">
             <button @click="unsetCharacter">Close</button>
         </div>
+
         <div class="modal-content flex align-items-center">
             <div class="modal-portrait">
                 <img class="modal-portrait-image" :src="character.image" />
@@ -57,7 +62,7 @@ import { ApiPayloadDto } from '../dto/apiPayload.dto'
 import { CharacterDto } from '../dto/character.dto'
 import { apiQuery } from '../services/api.service'
 
-@Options({ emits: ['unsetCharacter'] })
+@Options({ emits: ['unsetCharacter', 'unsetLoading'] })
 export default class CharacterDetail extends Vue {
     @Prop() characterId: number
     public payload: ApiPayloadDto
@@ -95,6 +100,7 @@ export default class CharacterDetail extends Vue {
             }`
             this.payload = await apiQuery(queryCharacter)
             this.character = this.payload.data.character
+            this.$emit('unsetLoading')
         }
     }
 
@@ -235,6 +241,10 @@ export default class CharacterDetail extends Vue {
         position: absolute;
     }
 
+    .close-mobile {
+        display: none;
+    }
+
     &-content {
         height: 100%;
     }
@@ -265,6 +275,10 @@ export default class CharacterDetail extends Vue {
         &-species {
             font-size: 16px;
         }
+
+        &-image {
+            width: 150%;
+        }
     }
 
     &-details {
@@ -293,6 +307,63 @@ export default class CharacterDetail extends Vue {
             font-weight: 400;
             color: #8c8c8c;
             margin-top: 10px;
+        }
+    }
+}
+
+@media only screen and (max-width: $max-width-mobile) {
+    .close-mobile {
+        display: block;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 2;
+
+        span {
+            font-size: 2em;
+            font-weight: 700;
+
+            &:after {
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                content: '\d7';
+                color: #fff;
+            }
+        }
+    }
+
+    .modal {
+        width: 90%;
+        height: 75%;
+
+        .close {
+            display: none;
+        }
+
+        &-content {
+            flex-direction: column;
+        }
+
+        &-portrait {
+            top: -20px;
+            left: 0;
+            height: 100%;
+
+            &-image {
+                height: 100%;
+                width: 100%;
+            }
+
+            &-name {
+                font-size: 20px;
+            }
+        }
+
+        &-details {
+            padding: 0.5em 1em;
+            overflow: scroll;
         }
     }
 }
