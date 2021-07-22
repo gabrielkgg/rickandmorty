@@ -1,6 +1,6 @@
 <template>
     <div class="flex column align-items-center">
-        <img src="../assets/img/rickandmortylogo.png" alt="Rick and Morty Logo" />
+        <img src="../assets/img/rickandmortylogo.png" alt="Rick and Morty Logo" class="logo" />
         <div class="flex fields">
             <form @submit.prevent="submit">
                 <input
@@ -22,7 +22,7 @@ import { Vue, Options } from 'vue-class-component'
 
 @Options({ emits: ['search'] })
 export default class Search extends Vue {
-    characterName = null
+    characterName: string = null
 
     public submit() {
         this.$emit('search', this.characterName)
@@ -31,11 +31,19 @@ export default class Search extends Vue {
 </script>
 
 <style lang="scss" scoped>
+@import '../sass/_all.scss';
+
 .fields {
     margin: 5em 0;
 
     .search-input {
         margin-right: 1em;
+    }
+}
+
+@media only screen and (max-width: $max-width-mobile) {
+    .logo {
+        width: 90%;
     }
 }
 </style>
