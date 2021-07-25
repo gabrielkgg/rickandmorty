@@ -114,7 +114,7 @@ export default class CharacterDetail extends Vue {
     }
 
     get whoIs() {
-        let isWas = this.character.status === CharacterStatus.DEAD ? 'was' : 'is'
+        const isWas = this.character.status === CharacterStatus.DEAD ? 'was' : 'is'
         return `${this.character.name} ${isWas} a ${this.character.gender} ${this.character.species}.`
     }
 
@@ -364,7 +364,8 @@ export default class CharacterDetail extends Vue {
 
         &-details {
             padding: 0.5em 1em;
-            overflow: scroll;
+            overflow-y: scroll;
+            width: 100%;
         }
     }
 }

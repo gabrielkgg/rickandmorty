@@ -46,3 +46,9 @@ button {
     padding: $padding;
     outline: none;
 }
+
+@each $position in (top, bottom, right, left) {
+    .margin-#{$position} {
+        margin-#{$position}: 1em;
+    }
+}
