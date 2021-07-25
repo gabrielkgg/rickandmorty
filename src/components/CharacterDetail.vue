@@ -114,7 +114,8 @@ export default class CharacterDetail extends Vue {
     }
 
     get whoIs() {
-        return `${this.character.name} is a ${this.character.gender} ${this.character.species}.`
+        let isWas = this.character.status === CharacterStatus.DEAD ? 'was' : 'is'
+        return `${this.character.name} ${isWas} a ${this.character.gender} ${this.character.species}.`
     }
 
     get status() {
@@ -122,10 +123,10 @@ export default class CharacterDetail extends Vue {
         if (this.character.status === CharacterStatus.ALIVE) {
             return `${heOrShe} is alive and well`
         } else if (this.character.status === CharacterStatus.DEAD) {
-            return `${heOrShe} is pretty much dead`
+            return `${heOrShe} is dead`
         }
 
-        return `We don't know if ${heOrShe} is well or not`
+        return `It can't be told if ${heOrShe} is alive or dead`
     }
 
     get heOrShe() {
