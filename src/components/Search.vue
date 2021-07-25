@@ -20,12 +20,12 @@
 <script lang="ts">
 import { Vue, Options } from 'vue-class-component'
 
-@Options({ emits: ['search'] })
+@Options({ emits: ['setCharacterName'] })
 export default class Search extends Vue {
     characterName: string = null
 
     public submit() {
-        this.$emit('search', this.characterName)
+        this.$emit('setCharacterName', this.characterName)
     }
 }
 </script>
