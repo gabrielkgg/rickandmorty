@@ -9,6 +9,7 @@
         "resolveJsonModule": true,
         "esModuleInterop": true,
         "lib": ["esnext", "dom"],
+        "skipLibCheck": true,
         "experimentalDecorators": true,
         "strictPropertyInitialization": false,
         "strictNullChecks": false
