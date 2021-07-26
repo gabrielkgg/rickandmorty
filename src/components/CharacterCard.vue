@@ -29,7 +29,7 @@ export default class CharacterCard extends Vue {
     overflow: hidden;
     margin-bottom: 2em;
     cursor: pointer;
-    transition: 1s;
+    animation: slideFade 1s;
 
     &-image {
         &.Dead {
