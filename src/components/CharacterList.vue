@@ -41,8 +41,8 @@ export default class CharacterList extends Vue {
 }
 </script>
 
-<style lang="scss" scoped>
-@import '../sass/_all.scss';
+<style lang="scss">
+@import '../sass/variables/_sizes.scss';
 
 @media only screen and (max-width: $max-width-mobile) {
     .card-holder {

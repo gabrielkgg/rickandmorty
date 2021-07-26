@@ -26,8 +26,8 @@ export default class LoadingScreen extends Vue {
 }
 </script>
 
-<style lang="scss">
-@import '../sass/_all.scss';
+<style lang="scss" scoped>
+@import '../sass/variables/_sizes.scss';
 
 .not-found {
     &-text {

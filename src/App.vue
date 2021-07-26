@@ -91,19 +91,5 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
-@import 'sass/_all.scss';
-
-#app {
-    position: relative;
-    overflow: hidden;
-    background: #040404 url(assets/img/background.png) no-repeat;
-    background-attachment: fixed;
-    background-position: center center;
-    background-size: cover;
-}
-#main {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
+@import 'sass/global.scss';
 </style>

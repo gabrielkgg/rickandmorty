@@ -20,11 +20,11 @@ export default class CharacterCard extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import '../sass/_all.scss';
+@import '../sass/variables/_presets.scss';
 
 .character-card {
     position: relative;
-    border: 2px solid $color-gray-2;
+    border: 2px solid var(--color-gray-2);
     border-radius: $border-radius;
     overflow: hidden;
     margin-bottom: 2em;

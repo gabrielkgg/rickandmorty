@@ -31,7 +31,7 @@ export default class Search extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import '../sass/_all.scss';
+@import '../sass/variables/_sizes.scss';
 
 .fields {
     margin: 5em 0;
