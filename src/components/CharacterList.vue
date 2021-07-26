@@ -1,8 +1,10 @@
 <template>
     <div class="container flex wrap justify-space-between">
-        <div v-for="(character, index) in list" :key="index" class="card-holder">
-            <CharacterCard :character="character" @click="setCharacterDetail(character.id)" />
-        </div>
+        <transition-group appear name="slide-fade">
+            <div v-for="(character, index) in list" :key="index" class="card-holder">
+                <CharacterCard :character="character" @click="setCharacterDetail(character.id)" />
+            </div>
+        </transition-group>
     </div>
     <CharacterDetail
         v-if="selectedCharacterId"
@@ -41,7 +43,7 @@ export default class CharacterList extends Vue {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../sass/_all.scss';
 
 @media only screen and (max-width: $max-width-mobile) {

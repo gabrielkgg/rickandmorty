@@ -1,25 +1,25 @@
 <template>
-    <div class="modal-overlay" @click="unsetCharacter"></div>
-
-    <div class="close-mobile" v-if="character">
+    <div v-if="character" class="close-mobile">
         <span @click="unsetCharacter"></span>
     </div>
 
-    <div class="modal flex column" v-if="character">
-        <div class="close">
-            <button @click="unsetCharacter">Close</button>
-        </div>
-
-        <div class="modal-content flex align-items-center">
-            <div class="modal-portrait">
-                <img class="modal-portrait-image" :src="character.image" />
-                <div class="modal-portrait-tag">
-                    <div class="modal-portrait-name">{{ character.name }}</div>
-                    <div class="modal-portrait-species">{{ character.species }}</div>
-                </div>
+    <div class="modal-overlay" @click="closeModal">
+        <div v-if="character" class="modal flex column" id="modal">
+            <div class="close">
+                <button @click="unsetCharacter">Close</button>
             </div>
-            <div class="modal-details">
-                <TextAbout :character="character" />
+
+            <div class="modal-content flex align-items-center">
+                <div class="modal-portrait">
+                    <img class="modal-portrait-image" :src="character.image" />
+                    <div class="modal-portrait-tag">
+                        <div class="modal-portrait-name">{{ character.name }}</div>
+                        <div class="modal-portrait-species">{{ character.species }}</div>
+                    </div>
+                </div>
+                <div class="modal-details">
+                    <TextAbout :character="character" />
+                </div>
             </div>
         </div>
     </div>
@@ -83,6 +83,12 @@ export default class CharacterDetail extends Vue {
         this.character = null
         this.$emit('unsetCharacter')
     }
+
+    closeModal($event: any) {
+        if ($event.target.className === 'modal-overlay') {
+            this.unsetCharacter()
+        }
+    }
 }
 </script>
 
@@ -91,23 +97,24 @@ export default class CharacterDetail extends Vue {
 
 .modal-overlay {
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    overflow: auto;
     z-index: 1;
-    background: #000000c7;
+    background-color: #000;
+    background-color: #000000c7;
 }
 
 .modal {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 60%;
-    height: 80%;
     background: var(--color-black);
     border: 1px solid var(--color-gray);
     border-radius: $border-radius;
-    z-index: 1;
+    margin: 5% auto;
+    padding: 1em;
+    width: 80%;
+    animation: fadeIn 0.4s;
 
     .close {
         padding: $padding;
@@ -127,7 +134,6 @@ export default class CharacterDetail extends Vue {
         border: 2px solid $color-gray-2;
         border-radius: $border-radius;
         overflow: hidden;
-        margin-bottom: 2em;
         left: -30px;
 
         &-tag {
@@ -208,8 +214,9 @@ export default class CharacterDetail extends Vue {
     }
 
     .modal {
-        width: 90%;
-        height: 75%;
+        width: 85%;
+        height: 78%;
+        margin: 20% auto;
 
         .close {
             display: none;
