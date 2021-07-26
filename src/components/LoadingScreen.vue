@@ -16,8 +16,8 @@ export default class LoadingScreen extends Vue {
 }
 </script>
 
-<style lang="scss">
-@import '../sass/_all.scss';
+<style lang="scss" scoped>
+@import '../sass/variables/_presets.scss';
 
 .overlay {
     display: flex;
@@ -34,7 +34,7 @@ export default class LoadingScreen extends Vue {
     backdrop-filter: blur(6px);
 
     .loading-image {
-        border: 2px solid $color-gray-2;
+        border: 2px solid var(--color-gray-2);
         border-radius: $border-radius;
     }
 

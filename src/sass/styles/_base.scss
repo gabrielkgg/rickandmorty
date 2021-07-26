@@ -1,7 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
-$padding: 10px 14px;
-$border: 2px solid var(--color-white);
-$border-radius: 8px;
+
+#app {
+    position: relative;
+    overflow: hidden;
+    background: #040404 url(assets/img/background.png) no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+}
+#main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
 body,
 html {

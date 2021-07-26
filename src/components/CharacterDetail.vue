@@ -93,7 +93,8 @@ export default class CharacterDetail extends Vue {
 </script>
 
 <style lang="scss">
-@import '../sass/_all.scss';
+@import '../sass/variables/_sizes.scss';
+@import '../sass/variables/_presets.scss';
 
 .modal-overlay {
     position: fixed;
@@ -131,7 +132,7 @@ export default class CharacterDetail extends Vue {
 
     &-portrait {
         position: relative;
-        border: 2px solid $color-gray-2;
+        border: 2px solid var(--color-gray-2);
         border-radius: $border-radius;
         overflow: hidden;
         left: -30px;
