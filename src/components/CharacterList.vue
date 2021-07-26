@@ -1,10 +1,8 @@
 <template>
     <div class="container flex wrap justify-space-between">
-        <transition-group appear name="slide-fade">
-            <div v-for="(character, index) in list" :key="index" class="card-holder">
-                <CharacterCard :character="character" @click="setCharacterDetail(character.id)" />
-            </div>
-        </transition-group>
+        <div v-for="character in list" :key="character.id" class="card-holder">
+            <CharacterCard :character="character" @click="setCharacterDetail(character.id)" />
+        </div>
     </div>
     <CharacterDetail
         v-if="selectedCharacterId"
