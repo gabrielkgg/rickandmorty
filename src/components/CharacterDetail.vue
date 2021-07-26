@@ -102,7 +102,7 @@ export default class CharacterDetail extends Vue {
     left: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
+    overflow: hidden;
     z-index: 1;
     background-color: #000;
     background-color: #000000c7;
@@ -154,10 +154,6 @@ export default class CharacterDetail extends Vue {
 
         &-species {
             font-size: 16px;
-        }
-
-        &-image {
-            width: 150%;
         }
     }
 
@@ -228,13 +224,12 @@ export default class CharacterDetail extends Vue {
         }
 
         &-portrait {
-            top: -20px;
+            top: -50px;
             left: 0;
-            height: 100%;
 
             &-image {
-                height: 100%;
-                width: 100%;
+                min-height: 100%;
+                min-width: 100%;
             }
 
             &-name {
